@@ -8,169 +8,124 @@
 body {
 margin: 0;
 font-family: 'Roboto', sans-serif;
-background: linear-gradient(to bottom, #f6f8fb, #e0e4eb);
-color: #222;
+background: linear-gradient(to bottom, #000033, #000066);
+color: #fff;
+overflow-x: hidden;
 }
 header {
 text-align: center;
 padding: 4rem 1rem 3rem;
-background: #4a90e2;
-color: white;
-box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+background: linear-gradient(45deg, #ff0000, #ff9900, #ffff00, #00ff00, #00ffff, #0000ff, #9900ff);
+background-size: 400% 400%;
+animation: rainbow 15s ease infinite;
+box-shadow: 0 4px 10px rgba(255,255,255,0.3);
+}
+@keyframes rainbow {
+0% {background-position: 0% 50%;}
+50% {background-position: 100% 50%;}
+100% {background-position: 0% 50%;}
 }
 header h1 {
-font-size: 3rem;
+font-size: 3.5rem;
 margin-bottom: 0.5rem;
+text-shadow: 0 0 10px #fff, 0 0 20px #ff0, 0 0 30px #f00;
 }
 header p {
-font-size: 1.2rem;
+font-size: 1.3rem;
 margin: 0;
-}
-nav {
-background: #3a7bd5;
-padding: 1rem;
-text-align: center;
-}
-nav a {
-color: white;
-text-decoration: none;
-margin: 0 1rem;
-font-weight: bold;
-transition: color 0.3s;
-}
-nav a:hover {
-color: #ffd700;
+text-shadow: 0 0 5px #fff;
 }
 .cards {
 display: grid;
-grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-gap: 2.5rem;
-padding: 3rem 4rem 5rem;
+grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+gap: 3rem;
+padding: 4rem 5rem 6rem;
 }
 .card {
-background: white;
-border-radius: 20px;
-padding: 2rem;
-box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+background: rgba(255,255,255,0.1);
+border-radius: 25px;
+padding: 2.5rem;
+box-shadow: 0 25px 50px rgba(255,255,255,0.2);
 cursor: pointer;
-transition: transform 0.3s ease, box-shadow 0.3s ease;
-overflow: hidden;
+transition: transform 0.4s ease, box-shadow 0.4s ease;
+backdrop-filter: blur(10px);
+border: 1px solid rgba(255,255,255,0.3);
 }
 .card:hover {
-transform: translateY(-6px);
-box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+transform: translateY(-8px) scale(1.05);
+box-shadow: 0 30px 60px rgba(255,0,0,0.5), 0 0 20px #ff0;
 }
 .card img {
 width: 100%;
-height: 180px;
+height: 200px;
 object-fit: cover;
-border-radius: 15px;
+border-radius: 20px;
 margin-bottom: 1.5rem;
-transition: transform 0.3s;
+transition: transform 0.4s, box-shadow 0.4s;
 }
 .card:hover img {
-transform: scale(1.05);
+transform: scale(1.1);
+box-shadow: 0 0 15px #fff;
 }
 .card h2 {
 margin: 0.5rem 0 0.3rem;
-font-size: 1.8rem;
+font-size: 2rem;
+text-shadow: 0 0 5px #ff0;
 }
 .card p {
 margin: 0;
-color: #666;
-font-size: 1.1rem;
+color: #ddd;
+font-size: 1.2rem;
 }
 .details {
-display: none;
+max-height: 0;
+overflow: hidden;
+transition: max-height 0.5s ease-in-out;
 margin-top: 1.5rem;
-padding: 1rem;
-background: #f9f9f9;
-border-radius: 10px;
+padding: 0 1rem;
+background: rgba(0,0,0,0.5);
+border-radius: 15px;
+}
+.card.open .details {
+max-height: 500px; /* Adjust based on content */
+padding: 1.5rem 1rem;
 }
 .details ul {
 padding-left: 1.5rem;
 line-height: 1.8;
-list-style-type: disc;
+list-style-type: none;
+}
+.details ul li {
+position: relative;
+padding-left: 1.5rem;
+}
+.details ul li::before {
+content: '🚗';
+position: absolute;
+left: 0;
+color: #ff0;
 }
 .details strong {
 display: block;
 margin-top: 1rem;
-font-size: 1.2rem;
-color: #4a90e2;
-}
-#calculator {
-padding: 3rem 4rem;
-background: white;
-margin: 2rem 4rem;
-border-radius: 20px;
-box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-}
-#calculator h2 {
-text-align: center;
-margin-bottom: 2rem;
-font-size: 2.2rem;
-}
-.form-group {
-margin-bottom: 1.5rem;
-}
-.form-group label {
-display: block;
-margin-bottom: 0.5rem;
-font-weight: bold;
-}
-.form-group input {
-width: 100%;
-padding: 0.8rem;
-border: 1px solid #ddd;
-border-radius: 8px;
-font-size: 1rem;
-}
-button {
-display: block;
-width: 100%;
-padding: 1rem;
-background: #4a90e2;
-color: white;
-border: none;
-border-radius: 8px;
-font-size: 1.2rem;
-cursor: pointer;
-transition: background 0.3s;
-}
-button:hover {
-background: #3a7bd5;
-}
-#total {
-text-align: center;
-margin-top: 2rem;
-font-size: 1.8rem;
-color: #4a90e2;
-}
-footer {
-text-align: center;
-padding: 2rem;
-background: #3a7bd5;
-color: white;
-font-size: 0.9rem;
+font-size: 1.4rem;
+color: #00ff00;
+text-shadow: 0 0 5px #0f0;
 }
 </style>
 </head>
 <body>
 <header>
 <h1>Körskola – Pris</h1>
-<p>Jämför tre olika alternativ och se vad som ingår. Använd kalkylatorn för att anpassa kostnaderna.</p>
+<p>Jämför tre olika alternativ och se vad som ingår i varje paket!</p>
 </header>
-<nav>
-<a href="#alternativ">Alternativ</a>
-<a href="#calculator">Kalkylator</a>
-</nav>
-<main id="alternativ" class="cards">
+<main class="cards">
 <!-- Alternativ 1 -->
-<div class="card" onclick="toggleCard('alt1')">
-<img src="https://images.unsplash.com/photo-1549921296-3ecf8f5f58a9" alt="Körlektion">
+<div class="card" onclick="toggleCard(this)">
+<img src="https://www.carpro.com/hs-fs/hubfs/2023-Chevrolet-Corvette-Z06-credit-chevrolet.jpeg?width=1020&name=2023-Chevrolet-Corvette-Z06-credit-chevrolet.jpeg" alt="Cool sports car">
 <h2>Alternativ 1</h2>
 <p>Mårtenssons Trafikskola</p>
-<div id="alt1" class="details">
+<div class="details">
 <ul>
 <li>Lektioner: 5 à 80 min - 10 799 kr</li>
 <li>Riskettan: Ingår</li>
@@ -184,11 +139,11 @@ font-size: 0.9rem;
 </div>
 </div>
 <!-- Alternativ 2 -->
-<div class="card" onclick="toggleCard('alt2')">
-<img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70" alt="Bil på väg">
+<div class="card" onclick="toggleCard(this)">
+<img src="https://hips.hearstapps.com/hmg-prod/images/vol-27-pcoty-2025-group-1-677dbc61d16c0.jpg?crop=1xw:0.843328335832084xh;center,top&resize=1200:*" alt="Group of sports cars">
 <h2>Alternativ 2</h2>
 <p>Egen (Mårtensson + Bengtsson)</p>
-<div id="alt2" class="details">
+<div class="details">
 <ul>
 <li>Lektioner: 5 à 80 min - 6 199 kr</li>
 <li>Riskettan: 900 kr (Flexibelt)</li>
@@ -202,11 +157,11 @@ font-size: 0.9rem;
 </div>
 </div>
 <!-- Alternativ 3 -->
-<div class="card" onclick="toggleCard('alt3')">
-<img src="https://images.unsplash.com/photo-1525609004556-c46c7d6cf023" alt="Trafikskola">
+<div class="card" onclick="toggleCard(this)">
+<img src="https://images.unsplash.com/photo-1525609004556-c46c7d6cf023" alt="Trafikskola car">
 <h2>Alternativ 3</h2>
 <p>Kungsbacka Trafikskola</p>
-<div id="alt3" class="details">
+<div class="details">
 <ul>
 <li>Lektioner: 15 à 40 min - 11 200 kr</li>
 <li>Riskettan: 850 kr (Flexibelt)</li>
@@ -221,65 +176,13 @@ font-size: 0.9rem;
 </div>
 </div>
 </main>
-<section id="calculator">
-<h2>Interaktiv Kostnadskalkylator</h2>
-<form id="calc-form">
-<div class="form-group">
-<label for="lessons_cost">Lektioner totalpris (kr):</label>
-<input type="number" id="lessons_cost" value="0">
-</div>
-<div class="form-group">
-<label for="risk1">Riskettan (kr):</label>
-<input type="number" id="risk1" value="0">
-</div>
-<div class="form-group">
-<label for="risk2">Risktvåan (kr):</label>
-<input type="number" id="risk2" value="0">
-</div>
-<div class="form-group">
-<label for="theory">Digital teori (kr):</label>
-<input type="number" id="theory" value="0">
-</div>
-<div class="form-group">
-<label for="theoryprov">Teoriprov (kr):</label>
-<input type="number" id="theoryprov" value="500">
-</div>
-<div class="form-group">
-<label for="uppk">Uppkörning (kr):</label>
-<input type="number" id="uppk" value="2000">
-</div>
-<div class="form-group">
-<label for="testuppk">Testuppkörning (kr):</label>
-<input type="number" id="testuppk" value="1350">
-</div>
-<button type="button" onclick="calculateTotal()">Beräkna totalpris</button>
-</form>
-<div id="total"></div>
-</section>
-<footer>
-&copy; 2026 Körskola Prisjämförelse. Alla rättigheter förbehållna.
-</footer>
 <script>
-function toggleCard(activeId) {
-const allDetails = document.querySelectorAll('.details');
-allDetails.forEach(detail => {
-if (detail.id === activeId) {
-detail.style.display = detail.style.display === 'block' ? 'none' : 'block';
-} else {
-detail.style.display = 'none';
+function toggleCard(card) {
+const isOpen = card.classList.contains('open');
+document.querySelectorAll('.card').forEach(c => c.classList.remove('open'));
+if (!isOpen) {
+card.classList.add('open');
 }
-});
-}
-function calculateTotal() {
-const lessons = parseFloat(document.getElementById('lessons_cost').value) || 0;
-const risk1 = parseFloat(document.getElementById('risk1').value) || 0;
-const risk2 = parseFloat(document.getElementById('risk2').value) || 0;
-const theory = parseFloat(document.getElementById('theory').value) || 0;
-const theoryprov = parseFloat(document.getElementById('theoryprov').value) || 0;
-const uppk = parseFloat(document.getElementById('uppk').value) || 0;
-const testuppk = parseFloat(document.getElementById('testuppk').value) || 0;
-const total = lessons + risk1 + risk2 + theory + theoryprov + uppk + testuppk;
-document.getElementById('total').innerHTML = <strong>Totalpris: ${total.toFixed(2)} kr</strong>;
 }
 </script>
 </body>
