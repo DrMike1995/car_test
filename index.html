@@ -37,7 +37,7 @@ text-shadow: 0 0 5px #fff;
 }
 .cards {
 display: grid;
-grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 gap: 3rem;
 padding: 4rem 5rem 6rem;
 }
@@ -87,7 +87,7 @@ background: rgba(0,0,0,0.5);
 border-radius: 15px;
 }
 .card.open .details {
-max-height: 500px; /* Adjust based on content */
+max-height: 1000px; /* Increased for more content if needed */
 padding: 1.5rem 1rem;
 }
 .details ul {
@@ -111,6 +111,64 @@ margin-top: 1rem;
 font-size: 1.4rem;
 color: #00ff00;
 text-shadow: 0 0 5px #0f0;
+}
+/* Media queries for responsiveness */
+@media (max-width: 1024px) {
+.cards {
+grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+padding: 3rem 3rem 4rem;
+}
+header {
+padding: 3rem 1rem 2rem;
+}
+.card img {
+height: 180px;
+}
+}
+@media (max-width: 768px) {
+.cards {
+grid-template-columns: 1fr;
+padding: 2rem 1rem 3rem;
+gap: 2rem;
+}
+header h1 {
+font-size: 2.8rem;
+}
+header p {
+font-size: 1.1rem;
+}
+.card {
+padding: 2rem;
+}
+.card img {
+height: 160px;
+}
+.card h2 {
+font-size: 1.8rem;
+}
+.card p {
+font-size: 1rem;
+}
+.details ul {
+line-height: 1.6;
+}
+.details strong {
+font-size: 1.2rem;
+}
+}
+@media (max-width: 480px) {
+.cards {
+padding: 1.5rem 0.5rem 2rem;
+}
+.card {
+padding: 1.5rem;
+}
+.card img {
+height: 140px;
+}
+header {
+padding: 2rem 0.5rem 1.5rem;
+}
 }
 </style>
 </head>
@@ -178,11 +236,7 @@ text-shadow: 0 0 5px #0f0;
 </main>
 <script>
 function toggleCard(card) {
-const isOpen = card.classList.contains('open');
-document.querySelectorAll('.card').forEach(c => c.classList.remove('open'));
-if (!isOpen) {
-card.classList.add('open');
-}
+card.classList.toggle('open');
 }
 </script>
 </body>
