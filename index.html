@@ -3,76 +3,168 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Körskola – Pris</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 <style>
 body {
 margin: 0;
-font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-background: #f6f8fb;
+font-family: 'Roboto', sans-serif;
+background: linear-gradient(to bottom, #f6f8fb, #e0e4eb);
 color: #222;
 }
 header {
 text-align: center;
-padding: 3rem 1rem 2rem;
+padding: 4rem 1rem 3rem;
+background: #4a90e2;
+color: white;
+box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 header h1 {
-font-size: 2.5rem;
+font-size: 3rem;
 margin-bottom: 0.5rem;
 }
 header p {
-color: #555;
+font-size: 1.2rem;
+margin: 0;
+}
+nav {
+background: #3a7bd5;
+padding: 1rem;
+text-align: center;
+}
+nav a {
+color: white;
+text-decoration: none;
+margin: 0 1rem;
+font-weight: bold;
+transition: color 0.3s;
+}
+nav a:hover {
+color: #ffd700;
 }
 .cards {
 display: grid;
-grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-gap: 2rem;
-padding: 2rem 3rem 4rem;
+grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+gap: 2.5rem;
+padding: 3rem 4rem 5rem;
 }
 .card {
 background: white;
-border-radius: 18px;
-padding: 1.5rem;
-box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+border-radius: 20px;
+padding: 2rem;
+box-shadow: 0 20px 40px rgba(0,0,0,0.1);
 cursor: pointer;
-transition: transform 0.2s ease, box-shadow 0.2s ease;
+transition: transform 0.3s ease, box-shadow 0.3s ease;
+overflow: hidden;
 }
 .card:hover {
-transform: translateY(-4px);
-box-shadow: 0 20px 45px rgba(0,0,0,0.12);
+transform: translateY(-6px);
+box-shadow: 0 25px 50px rgba(0,0,0,0.15);
 }
 .card img {
 width: 100%;
-height: 160px;
+height: 180px;
 object-fit: cover;
-border-radius: 12px;
-margin-bottom: 1rem;
+border-radius: 15px;
+margin-bottom: 1.5rem;
+transition: transform 0.3s;
+}
+.card:hover img {
+transform: scale(1.05);
 }
 .card h2 {
-margin: 0.5rem 0 0.2rem;
+margin: 0.5rem 0 0.3rem;
+font-size: 1.8rem;
 }
 .card p {
 margin: 0;
-color: #555;
+color: #666;
+font-size: 1.1rem;
 }
 .details {
 display: none;
-margin-top: 1rem;
+margin-top: 1.5rem;
+padding: 1rem;
+background: #f9f9f9;
+border-radius: 10px;
 }
 .details ul {
-padding-left: 1.2rem;
-line-height: 1.6;
+padding-left: 1.5rem;
+line-height: 1.8;
+list-style-type: disc;
 }
 .details strong {
 display: block;
-margin-top: 0.5rem;
+margin-top: 1rem;
+font-size: 1.2rem;
+color: #4a90e2;
+}
+#calculator {
+padding: 3rem 4rem;
+background: white;
+margin: 2rem 4rem;
+border-radius: 20px;
+box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+}
+#calculator h2 {
+text-align: center;
+margin-bottom: 2rem;
+font-size: 2.2rem;
+}
+.form-group {
+margin-bottom: 1.5rem;
+}
+.form-group label {
+display: block;
+margin-bottom: 0.5rem;
+font-weight: bold;
+}
+.form-group input {
+width: 100%;
+padding: 0.8rem;
+border: 1px solid #ddd;
+border-radius: 8px;
+font-size: 1rem;
+}
+button {
+display: block;
+width: 100%;
+padding: 1rem;
+background: #4a90e2;
+color: white;
+border: none;
+border-radius: 8px;
+font-size: 1.2rem;
+cursor: pointer;
+transition: background 0.3s;
+}
+button:hover {
+background: #3a7bd5;
+}
+#total {
+text-align: center;
+margin-top: 2rem;
+font-size: 1.8rem;
+color: #4a90e2;
+}
+footer {
+text-align: center;
+padding: 2rem;
+background: #3a7bd5;
+color: white;
+font-size: 0.9rem;
 }
 </style>
 </head>
 <body>
 <header>
 <h1>Körskola – Pris</h1>
-<p>Jämför tre olika alternativ och se vad som ingår</p>
+<p>Jämför tre olika alternativ och se vad som ingår. Använd kalkylatorn för att anpassa kostnaderna.</p>
 </header>
-<main class="cards">
+<nav>
+<a href="#alternativ">Alternativ</a>
+<a href="#calculator">Kalkylator</a>
+</nav>
+<main id="alternativ" class="cards">
 <!-- Alternativ 1 -->
 <div class="card" onclick="toggleCard('alt1')">
 <img src="https://images.unsplash.com/photo-1549921296-3ecf8f5f58a9" alt="Körlektion">
@@ -129,6 +221,44 @@ margin-top: 0.5rem;
 </div>
 </div>
 </main>
+<section id="calculator">
+<h2>Interaktiv Kostnadskalkylator</h2>
+<form id="calc-form">
+<div class="form-group">
+<label for="lessons_cost">Lektioner totalpris (kr):</label>
+<input type="number" id="lessons_cost" value="0">
+</div>
+<div class="form-group">
+<label for="risk1">Riskettan (kr):</label>
+<input type="number" id="risk1" value="0">
+</div>
+<div class="form-group">
+<label for="risk2">Risktvåan (kr):</label>
+<input type="number" id="risk2" value="0">
+</div>
+<div class="form-group">
+<label for="theory">Digital teori (kr):</label>
+<input type="number" id="theory" value="0">
+</div>
+<div class="form-group">
+<label for="theoryprov">Teoriprov (kr):</label>
+<input type="number" id="theoryprov" value="500">
+</div>
+<div class="form-group">
+<label for="uppk">Uppkörning (kr):</label>
+<input type="number" id="uppk" value="2000">
+</div>
+<div class="form-group">
+<label for="testuppk">Testuppkörning (kr):</label>
+<input type="number" id="testuppk" value="1350">
+</div>
+<button type="button" onclick="calculateTotal()">Beräkna totalpris</button>
+</form>
+<div id="total"></div>
+</section>
+<footer>
+&copy; 2026 Körskola Prisjämförelse. Alla rättigheter förbehållna.
+</footer>
 <script>
 function toggleCard(activeId) {
 const allDetails = document.querySelectorAll('.details');
@@ -139,6 +269,17 @@ detail.style.display = detail.style.display === 'block' ? 'none' : 'block';
 detail.style.display = 'none';
 }
 });
+}
+function calculateTotal() {
+const lessons = parseFloat(document.getElementById('lessons_cost').value) || 0;
+const risk1 = parseFloat(document.getElementById('risk1').value) || 0;
+const risk2 = parseFloat(document.getElementById('risk2').value) || 0;
+const theory = parseFloat(document.getElementById('theory').value) || 0;
+const theoryprov = parseFloat(document.getElementById('theoryprov').value) || 0;
+const uppk = parseFloat(document.getElementById('uppk').value) || 0;
+const testuppk = parseFloat(document.getElementById('testuppk').value) || 0;
+const total = lessons + risk1 + risk2 + theory + theoryprov + uppk + testuppk;
+document.getElementById('total').innerHTML = <strong>Totalpris: ${total.toFixed(2)} kr</strong>;
 }
 </script>
 </body>
