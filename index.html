@@ -1,11 +1,87 @@
 <!DOCTYPE html>
 <html lang="sv">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Körskola – Pris</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Körskola – Pris</title>
+
+<style>
+  body {
+    margin: 0;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    background: #f6f8fb;
+    color: #222;
+  }
+
+  header {
+    text-align: center;
+    padding: 3rem 1rem 2rem;
+  }
+
+  header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  header p {
+    color: #555;
+  }
+
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    padding: 2rem 3rem 4rem;
+  }
+
+  .card {
+    background: white;
+    border-radius: 18px;
+    padding: 1.5rem;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 45px rgba(0,0,0,0.12);
+  }
+
+  .card img {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+    border-radius: 12px;
+    margin-bottom: 1rem;
+  }
+
+  .card h2 {
+    margin: 0.5rem 0 0.2rem;
+  }
+
+  .card p {
+    margin: 0;
+    color: #555;
+  }
+
+  .details {
+    display: none;
+    margin-top: 1rem;
+  }
+
+  .details ul {
+    padding-left: 1.2rem;
+    line-height: 1.6;
+  }
+
+  .details strong {
+    display: block;
+    margin-top: 0.5rem;
+  }
+</style>
 </head>
+
 <body>
 
 <header>
@@ -15,9 +91,12 @@
 
 <main class="cards">
 
-  <div class="card" onclick="toggle('alt1')">
+  <!-- Alternativ 1 -->
+  <div class="card" onclick="toggleCard('alt1')">
+    <img src="https://images.unsplash.com/photo-1549921296-3ecf8f5f58a9" alt="Körlektion">
     <h2>Alternativ 1</h2>
     <p>Mårtenssons Trafikskola</p>
+
     <div id="alt1" class="details">
       <ul>
         <li>5 lektioner à 80 min</li>
@@ -27,14 +106,17 @@
         <li>Teoriprov: 500 kr</li>
         <li>Uppkörning: 2 000 kr</li>
         <li>Testuppkörning: 1 350 kr</li>
-        <li><strong>Totalpris: 14 649 kr</strong></li>
+        <strong>Totalpris: 14 649 kr</strong>
       </ul>
     </div>
   </div>
 
-  <div class="card" onclick="toggle('alt2')">
+  <!-- Alternativ 2 -->
+  <div class="card" onclick="toggleCard('alt2')">
+    <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70" alt="Bil på väg">
     <h2>Alternativ 2</h2>
     <p>Egen (Mårtensson + Bengtsson)</p>
+
     <div id="alt2" class="details">
       <ul>
         <li>5 lektioner à 80 min</li>
@@ -44,14 +126,17 @@
         <li>Teoriprov: 500 kr</li>
         <li>Uppkörning: 2 000 kr</li>
         <li>Testuppkörning: 1 350 kr</li>
-        <li><strong>Totalpris: 14 499 kr</strong></li>
+        <strong>Totalpris: 14 499 kr</strong>
       </ul>
     </div>
   </div>
 
-  <div class="card" onclick="toggle('alt3')">
+  <!-- Alternativ 3 -->
+  <div class="card" onclick="toggleCard('alt3')">
+    <img src="https://images.unsplash.com/photo-1525609004556-c46c7d6cf023" alt="Trafikskola">
     <h2>Alternativ 3</h2>
     <p>Kungsbacka Trafikskola</p>
+
     <div id="alt3" class="details">
       <ul>
         <li>15 lektioner à 40 min</li>
@@ -61,13 +146,26 @@
         <li>Teoriprov: 500 kr</li>
         <li>Uppkörning: 2 000 kr</li>
         <li>Testuppkörning: 1 350 kr</li>
-        <li><strong>Totalpris: 18 400 kr</strong></li>
+        <strong>Totalpris: 18 400 kr</strong>
       </ul>
     </div>
   </div>
 
 </main>
 
-<script src="script.js"></script>
+<script>
+  function toggleCard(activeId) {
+    const allDetails = document.querySelectorAll('.details');
+
+    allDetails.forEach(detail => {
+      if (detail.id === activeId) {
+        detail.style.display = detail.style.display === 'block' ? 'none' : 'block';
+      } else {
+        detail.style.display = 'none';
+      }
+    });
+  }
+</script>
+
 </body>
 </html>
